@@ -1,12 +1,12 @@
 package manga
 
 type Manga struct {
-	Description string    `json:"description"`
-	Tags        []string  `json:"tags"`
-	Status      string    `json:"status"`
-	Title       string    `json:"title"`
-	Url         string    `json:"url"`
 	Chapters    []Chapter `json:"chapters"`
+	Description string    `json:"description"`
+	Image       string    `json:"image"`
+	Status      string    `json:"status"`
+	Tags        []string  `json:"tags"`
+	Title       string    `json:"title"`
 }
 
 type Chapter struct {
