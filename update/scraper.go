@@ -1,53 +1,55 @@
 package update
 
 import (
-	"fmt"
 	"strconv"
 
 	"github.com/gocolly/colly"
-	"github.com/jaroddev/katana/fake"
 )
 
 const (
-	BASE_URL    = "https://mangakatana.com/latest/page/"
-	BASE_DOMAIN = "mangakatana.com"
+	BASE_URL = "https://mangakatana.com/latest/page/"
 )
 
-type Scrapper struct {
-	Collector colly.Collector
-	Mangas    *[]Update
+type updatesPtr struct {
+	Updates []Update
 }
 
-func New() (scrapper Scrapper) {
-	collector := colly.NewCollector(
-		colly.AllowedDomains(
-			BASE_DOMAIN,
-			fake.Test_DOMAIN,
-		),
-		colly.AllowURLRevisit(),
-	)
-	mangas := make([]Update, 0)
+type Scraper struct {
+	Collector *colly.Collector
+	Ptr       *updatesPtr
+}
 
-	collector.OnRequest(func(request *colly.Request) {
-		fmt.Println("Visiting update page: ", request.URL.String())
-	})
+func GetScraper() (scrapper Scraper) {
+	collector := customCollector()
+	updates := make([]Update, 0)
 
-	collector.OnHTML("#book_list .item", func(element *colly.HTMLElement) {
-		manga := Update{
-			Title: element.ChildText(".title a"),
-			Url:   element.ChildAttr(".title a", "href"),
-		}
+	ptr := updatesPtr{
+		Updates: updates,
+	}
 
-		mangas = append(mangas, manga)
-	})
+	collector.OnHTML("#book_list .item", scrapUpdate(&ptr))
 
-	scrapper.Collector = *collector
-	scrapper.Mangas = &mangas
+	scrapper.Collector = collector
+	scrapper.Ptr = &ptr
 
 	return
 }
 
-func (scrapper *Scrapper) Url(pageNumber int) string {
+func scrapUpdate(updatesPtr *updatesPtr) func(element *colly.HTMLElement) {
+
+	return func(element *colly.HTMLElement) {
+
+		update := Update{
+			Title: element.ChildText(".title a"),
+			Url:   element.ChildAttr(".title a", "href"),
+		}
+
+		updatesPtr.Updates = append(updatesPtr.Updates, update)
+	}
+
+}
+
+func (scrapper *Scraper) Url(pageNumber int) string {
 	if pageNumber < 1 {
 		pageNumber = 1
 	}

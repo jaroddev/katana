@@ -2,6 +2,8 @@ package update
 
 import (
 	"fmt"
+	"net/http/httptest"
+	"os"
 	"testing"
 
 	"github.com/jaroddev/katana/fake"
@@ -9,7 +11,7 @@ import (
 )
 
 func TestGetUrl(t *testing.T) {
-	scraper := New()
+	scraper := GetScraper()
 
 	table := []struct {
 		name  string
@@ -48,32 +50,23 @@ func TestGetUrl(t *testing.T) {
 
 }
 
-func TestScrapManga(t *testing.T) {
-	// create a listener with the desired port.
-	ts := fake.Server()
+var ts *httptest.Server
+
+func TestMain(m *testing.M) {
+	ts = fake.Server()
 
 	ts.Start()
 	defer ts.Close()
-
-	url := fmt.Sprintf("%s%s", ts.URL, fake.Endpoint)
-
-	scraper := New()
-	scraper.Collector.Visit(url)
-
-	// 	printMangaList(*scraper.Mangas)
-
-	assert.NotNil(t, scraper.Mangas)
-	assert.NotEmpty(t, scraper.Mangas)
-	assert.Len(t, *scraper.Mangas, 20)
+	os.Exit(m.Run())
 }
 
-func printMangaList(mangas []Update) {
-	fmt.Println("[")
-	for _, manga := range mangas {
-		fmt.Println("\t{")
-		fmt.Println("\t\t", "\"", "Url", "\":", "\"", manga.Url, "\",")
-		fmt.Println("\t\t", "\"", "Title", "\":", "\"", manga.Title, "\"")
-		fmt.Println("\t},")
-	}
-	fmt.Println("]")
+func TestScrapUpdate(t *testing.T) {
+	url := fmt.Sprintf("%s%s", ts.URL, fake.Endpoint)
+
+	scraper := GetScraper()
+	scraper.Collector.Visit(url)
+
+	assert.NotNil(t, scraper.Ptr.Updates)
+	assert.NotEmpty(t, scraper.Ptr.Updates)
+	assert.Len(t, scraper.Ptr.Updates, 20)
 }
