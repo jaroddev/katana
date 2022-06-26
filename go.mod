@@ -3,7 +3,6 @@ module github.com/jaroddev/katana
 go 1.18
 
 require (
-	github.com/PuerkitoBio/goquery v1.8.0 // indirect
 	github.com/VividCortex/gohistogram v1.0.0 // indirect
 	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/antchfx/htmlquery v1.2.4 // indirect
@@ -15,7 +14,6 @@ require (
 	github.com/chromedp/chromedp v0.8.1 // indirect
 	github.com/chromedp/sysutil v1.0.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/geziyor/geziyor v0.0.0-20220429000531-738852f9321d // indirect
 	github.com/go-kit/kit v0.12.0 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/gobwas/httphead v0.1.0 // indirect
@@ -44,6 +42,8 @@ require (
 )
 
 require (
+	github.com/PuerkitoBio/goquery v1.8.0
+	github.com/geziyor/geziyor v0.0.0-20220429000531-738852f9321d
 	github.com/gocolly/colly v1.2.0
 	github.com/stretchr/testify v1.7.1
 )
