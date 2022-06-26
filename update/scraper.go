@@ -1,8 +1,6 @@
 package update
 
 import (
-	"strconv"
-
 	"github.com/gocolly/colly"
 )
 
@@ -47,14 +45,4 @@ func scrapUpdate(updatesPtr *updatesPtr) func(element *colly.HTMLElement) {
 		updatesPtr.Updates = append(updatesPtr.Updates, update)
 	}
 
-}
-
-func (scrapper *Scraper) Url(pageNumber int) string {
-	if pageNumber < 1 {
-		pageNumber = 1
-	}
-
-	url := BASE_URL + strconv.Itoa(pageNumber)
-
-	return url
 }

@@ -21,7 +21,7 @@ func TestMain(m *testing.M) {
 }
 
 func TestScrapInfo(t *testing.T) {
-	url := fmt.Sprintf("%s%s", ts.URL, fake.ChapterEndpoint)
+	url := fmt.Sprintf("%s%s", ts.URL, fake.MangaEndpoint)
 
 	scraper := GetScraper()
 
@@ -34,7 +34,7 @@ func TestScrapInfo(t *testing.T) {
 }
 
 func TestScrapDescription(t *testing.T) {
-	url := fmt.Sprintf("%s%s", ts.URL, fake.ChapterEndpoint)
+	url := fmt.Sprintf("%s%s", ts.URL, fake.MangaEndpoint)
 
 	scraper := GetScraper()
 
@@ -46,7 +46,7 @@ func TestScrapDescription(t *testing.T) {
 }
 
 func TestScrapCover(t *testing.T) {
-	url := fmt.Sprintf("%s%s", ts.URL, fake.ChapterEndpoint)
+	url := fmt.Sprintf("%s%s", ts.URL, fake.MangaEndpoint)
 
 	scraper := GetScraper()
 
@@ -57,7 +57,7 @@ func TestScrapCover(t *testing.T) {
 }
 
 func TestScrapTags(t *testing.T) {
-	url := fmt.Sprintf("%s%s", ts.URL, fake.ChapterEndpoint)
+	url := fmt.Sprintf("%s%s", ts.URL, fake.MangaEndpoint)
 
 	scraper := GetScraper()
 
@@ -74,7 +74,7 @@ func TestScrapTags(t *testing.T) {
 }
 
 func TestScrapChapter(t *testing.T) {
-	url := fmt.Sprintf("%s%s", ts.URL, fake.ChapterEndpoint)
+	url := fmt.Sprintf("%s%s", ts.URL, fake.MangaEndpoint)
 
 	scraper := GetScraper()
 	scraper.Collector.Visit(url)
