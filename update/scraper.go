@@ -1,7 +1,7 @@
 package update
 
 import (
-	"github.com/gocolly/colly"
+	"github.com/gocolly/colly/v2"
 )
 
 const (

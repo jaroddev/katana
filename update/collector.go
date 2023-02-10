@@ -3,7 +3,7 @@ package update
 import (
 	"fmt"
 
-	"github.com/gocolly/colly"
+	"github.com/gocolly/colly/v2"
 	"github.com/jaroddev/katana/fake"
 )
 
