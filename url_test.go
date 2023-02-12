@@ -1,8 +1,9 @@
-package update
+package katana_test
 
 import (
 	"testing"
 
+	"github.com/jaroddev/katana"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -33,7 +34,7 @@ func TestGetUrl(t *testing.T) {
 	for _, row := range table {
 
 		t.Run(row.name, func(t *testing.T) {
-			assert.Equal(t, Url(row.value), row.wants)
+			assert.Equal(t, katana.Url(row.value), row.wants)
 		})
 
 	}
