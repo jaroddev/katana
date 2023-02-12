@@ -16,9 +16,12 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v2
       with:
-        go-version: 1.20
+        go-version: 1.20.x
 
-    - name: Run go vet
+    - name: Check go version
+      run: go version
+
+    - name: Run go mod tidy
       run: go mod tidy
 
     - name: Run go vet
