@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/PuerkitoBio/goquery v1.8.0
-	github.com/geziyor/geziyor v0.0.0-20221223163247-7349b81754b8
+	github.com/geziyor/geziyor v0.0.0-20220429000531-738852f9321d
 	github.com/stretchr/testify v1.8.1
 	golang.org/x/net v0.6.0
 )

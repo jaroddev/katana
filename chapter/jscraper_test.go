@@ -18,7 +18,7 @@ func TestScrapRealChapterPageWithJS(t *testing.T) {
 
 	assert.NotNil(t, scraper.Chapter)
 	assert.NotEmpty(t, scraper.Chapter)
-	// assert.Greater(t, len(scraper.Chapter.Images), 0)
+	assert.Greater(t, len(scraper.Chapter.Images), 0)
 
 	assert.NotEqual(t, scraper.Chapter.Images[0], "about:blank")
 	assert.NotEqual(t, scraper.Chapter.Images[len(scraper.Chapter.Images)-1], "about:blank")
