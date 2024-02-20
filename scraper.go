@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"compress/gzip"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"strings"
 
@@ -98,9 +97,7 @@ func scrapTags(manga *Manga) func(element *HTMLElement) {
 }
 
 func scrapUpdate(updatesPtr *updatesPtr) func(element *HTMLElement) {
-
 	return func(element *HTMLElement) {
-
 		update := Update{
 			Title: element.ChildText(".title a"),
 			Url:   element.ChildAttr(".title a", "href"),
@@ -108,7 +105,6 @@ func scrapUpdate(updatesPtr *updatesPtr) func(element *HTMLElement) {
 
 		updatesPtr.Updates = append(updatesPtr.Updates, update)
 	}
-
 }
 
 func fromByte(data []byte) (*goquery.Document, error) {
@@ -133,7 +129,7 @@ func fromURL(URL string) (*goquery.Document, error) {
 		defer bodyReader.(*gzip.Reader).Close()
 	}
 
-	data, err := ioutil.ReadAll(bodyReader)
+	data, err := io.ReadAll(bodyReader)
 	if err != nil {
 		return nil, err
 	}

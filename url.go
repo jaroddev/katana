@@ -1,6 +1,7 @@
 package katana
 
 import (
+	"fmt"
 	"strconv"
 )
 
@@ -14,7 +15,5 @@ func Url(pageNumber uint64) string {
 		pageNumber = 1
 	}
 
-	url := latest + "/" + strconv.FormatUint(pageNumber, 10)
-
-	return url
+	return fmt.Sprintf("%s/%s", latest, strconv.FormatUint(pageNumber, 10))
 }
